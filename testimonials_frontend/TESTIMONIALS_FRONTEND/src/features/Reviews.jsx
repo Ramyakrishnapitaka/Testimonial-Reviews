@@ -4,8 +4,6 @@ import "../App.css";
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);
-
-  // ✅ Get user details from localStorage (if logged in)
   const user = (() => {
     try {
       return JSON.parse(localStorage.getItem("user"));
@@ -14,15 +12,12 @@ function Reviews() {
     }
   })();
 
-  // ✅ Load existing reviews from backend on mount
   useEffect(() => {
-    fetch("http://localhost:4900/api/reviews")
+    fetch("https://testimonial-reviews-backend.onrender.com/api/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data))
       .catch((err) => console.error("Error fetching reviews:", err));
   }, []);
-
-  // ✅ Handle form submission
   const reviewForm = useFormik({
     initialValues: { content: "" },
     onSubmit: async (values, { resetForm }) => {
@@ -38,7 +33,7 @@ function Reviews() {
       };
 
       try {
-        const res = await fetch("http://localhost:4900/api/reviews", {
+        const res = await fetch("https://testimonial-reviews-backend.onrender.com/api/reviews", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newReview),
