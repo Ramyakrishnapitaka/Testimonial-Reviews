@@ -8,15 +8,12 @@ var cors=require("cors");
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}))
+require('dotenv').config()
 
 
-var mongooseUrl="mongodb+srv://Ramya:Ramya777@cluster0.dfizji2.mongodb.net/Edupoly?retryWrites=true&w=majority&appName=Cluster0";
-mongoose.connect(mongooseUrl).then(data=>{
-    console.log(" DB Connected");
-})
-.catch(err=>{
-    console.log("DB not comnected",err);
-})
+mongoose.connect(process.env.MONGOURL)
+.then(()=>console.log("db connected"))
+.catch(res=>console.log("db not connected"))
 
 app.get("/",(req,res)=>{
     userModel.find({}).then(data=>{res.send(data);})
@@ -34,7 +31,7 @@ app.post("/signup", async (req, res) => {
     const newUser = new userModel({ email, username, password });
     await newUser.save();
 
-    // ✅ Send full user data back
+    
     res.status(200).json({ message: "User registered successfully", user: newUser });
   } catch (err) {
     console.error(err);
@@ -47,7 +44,7 @@ app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await userModel.findOne({ email, password }); // simple plain text check
+    const user = await userModel.findOne({ email, password }); 
     if (!user) {
       return res.status(400).json({ message: "Invalid email or password" });
     }
@@ -58,12 +55,7 @@ app.post("/login", async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
-// app.post("/api/reviews", async (req, res) => {
-//   const newReview = new reviewModel(req.body);
-//   const saved = await newReview.save();
-//   res.json(saved);
-// });
-// POST /api/reviews
+
 app.post("/api/reviews", async (req, res) => {
   try {
     const { username, content, profile } = req.body;
@@ -75,7 +67,7 @@ app.post("/api/reviews", async (req, res) => {
     });
 
     const saved = await newReview.save();
-    res.status(201).json(saved); // ✅ return saved review
+    res.status(201).json(saved); 
   } catch (err) {
     res.status(500).json({ error: "Failed to save review" });
   }
@@ -88,7 +80,7 @@ app.get("/api/reviews", async (req, res) => {
 
 
 
-
-app.listen("4900",()=>{
+const PORT=process.env.PORT||4900
+app.listen(POST,()=>{
     console.log("Server is connected successfully");
 })
