@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended:false}))
 require('dotenv').config()
 
 
-mongoose.connect(process.env.MONGOURL)
+mongoose.connect(process.env.MONGO_URL)
 .then(()=>console.log("db connected"))
 .catch(res=>console.log("db not connected"))
 
