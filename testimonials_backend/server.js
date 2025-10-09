@@ -81,6 +81,6 @@ app.get("/api/reviews", async (req, res) => {
 
 
 const PORT=process.env.PORT||4900
-app.listen(POST,()=>{
+app.listen(PORT,()=>{
     console.log("Server is connected successfully");
 })
