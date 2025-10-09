@@ -36,7 +36,7 @@ function Signup() {
       console.log("Form Submitted:", values);
       alert("Form submitted successfully!");
       try {
-        const response = await fetch("http://localhost:4900/signup", {
+        const response = await fetch("https://testimonial-reviews-backend.onrender.com/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
