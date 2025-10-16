@@ -8,21 +8,15 @@ import Login from "./features/Login.jsx";
 import Reviews from "./features/Reviews.jsx";
 
 const router = createBrowserRouter([
-  { path: "/", 
+  {
+    path: "/",
     element: <App />,
-    children:[
-       { path: "/signup, 
-    element: <SignUp></SignUp>
-   },
-      { index:true, 
-    element: <Login></Login>
-   },
-   { path: "/review", 
-    element: <Reviews></Reviews>
-   },
-    ]
-   },
-  
+    children: [
+      { index: true, element: <Login /> },
+      { path: "/signup", element: <SignUp /> },
+      { path: "/review", element: <Reviews /> },
+    ],
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(
@@ -30,5 +24,6 @@ createRoot(document.getElementById("root")).render(
     <RouterProvider router={router} />
   </StrictMode>
 );
+
 
 
