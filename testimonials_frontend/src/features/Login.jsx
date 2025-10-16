@@ -24,7 +24,7 @@ function Login() {
     }),
     onSubmit: async (values) => {
       try {
-        const response = await fetch("https://testimonial-reviews-backend.onrender.com/login", {
+        const response = await fetch("https://testimonial-reviews-1.onrender.com/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(values),
