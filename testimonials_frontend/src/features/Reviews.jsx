@@ -13,7 +13,7 @@ function Reviews() {
   })();
 
   useEffect(() => {
-    fetch("https://testimonial-reviews-backend.onrender.com/api/reviews")
+    fetch("https://testimonial-reviews-1.onrender.com")
       .then((res) => res.json())
       .then((data) => setReviews(data))
       .catch((err) => console.error("Error fetching reviews:", err));
@@ -33,7 +33,7 @@ function Reviews() {
       };
 
       try {
-        const res = await fetch("https://testimonial-reviews-backend.onrender.com/api/reviews", {
+        const res = await fetch("https://testimonial-reviews-1.onrender.com", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newReview),
