@@ -49,7 +49,7 @@ function Signup() {
 
         if (response.ok) {
        alert("Signup successful!");
-       localStorage.setItem("user", JSON.stringify(data.user)); // ✅ save entire user object
+       localStorage.setItem("user", JSON.stringify(data.user)); 
        navigate("/login");
        formik.resetForm();
         }
